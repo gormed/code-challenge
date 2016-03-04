@@ -8,7 +8,7 @@
  * Controller of the ngEvoraitCodeChallengeApp
  */
 angular.module('ngEvoraitCodeChallengeApp')
-  .controller('MainCtrl', ['evoraitConfig', function ($scope) {
+  .controller('MainCtrl', ['$scope', 'evoraitConfig', function ($scope, evoraitConfig) {
         $scope.page = {
             title: evoraitConfig.title
         };

@@ -1,15 +1,16 @@
-/**
- * Created by Hans on 04.03.2016.
- */
 'use strict';
 
-
-angular.module('ngEvoraITCodeChallenge').component('confirmationFeedbackSign', {
+/**
+ * @ngdoc component
+ * @name ngEvoraitCodeChallengeApp.confirmationFeedbackSign
+ * @description
+ * # confirmationFeedbackSign
+ * Component in the ngEvoraitCodeChallengeApp.
+ */
+angular.module('ngEvoraitCodeChallengeApp').component('confirmationFeedbackSign', {
     template: "<button role=\"button\" class=\"btn btn-default\" ng-click=\"$ctrl.showSummary()\">Summary</button>",
     bindings: {
-        stages: "<",
-        metaInfo: "<",
-        materialList: "<"
+        serviceItem: "<"
     },
     controller: ['$scope', '$element', '$attrs', '$uibModal',
         function ($scope, $element, $attrs, $uibModal) {
@@ -19,6 +20,9 @@ angular.module('ngEvoraITCodeChallenge').component('confirmationFeedbackSign', {
                     templateUrl: "scripts/components/confirmationFeedbackSign.html",
                     placement: "top",
                     backdrop: "static",
+                    scope: {
+
+                    },
                     controller: function ($scope, $uibModalInstance) {
                         $scope.sendLater = function () {
                             $uibModalInstance.close({enqueue: {}});

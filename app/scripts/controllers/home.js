@@ -8,9 +8,7 @@
  * Controller of the ngEvoraitCodeChallengeApp
  */
 angular.module('ngEvoraitCodeChallengeApp')
-  .controller('HomeCtrl', function ($scope) {
+    .controller('HomeCtrl', ['$scope', 'serviceApiMock', 'serviceItem', function ($scope, serviceApiMock, serviceItem) {
         $scope.$parent.currentMenu = 0;
-        $scope.summary = {
-
-        }
-    });
+        $scope.serviceItem = serviceApiMock.getServiceItem();
+    }]);

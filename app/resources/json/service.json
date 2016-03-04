@@ -29,6 +29,26 @@
     }
   ],
   "materialList": [
-
+    {
+      "materialNo": "6510515600",
+      "description": "Optilix",
+      "materialCode": "A",
+      "quantity": "1",
+      "annotation": "Invoice to client"
+    },
+    {
+      "materialNo": "2810515631",
+      "description": "Microswitch 1U 6A 250VAC AG A",
+      "materialCode": "A",
+      "quantity": "3",
+      "annotation": "Invoice to client"
+    },
+    {
+      "materialNo": "3410515699",
+      "description": "Spring level 191913 913 WITH ROLL A",
+      "materialCode": "V",
+      "quantity": "1",
+      "annotation": "Whereabouts client diagnostic"
+    }
   ]
 }

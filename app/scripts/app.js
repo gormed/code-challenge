@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name ngEvoraITCodeChallenge
+ * @name ngEvoraitCodeChallengeApp
  * @description
- * # ngEvoraITCodeChallenge
+ * # ngEvoraitCodeChallengeApp
  *
  * Main module of the application.
  */
 angular
-    .module('ngEvoraITCodeChallenge', [
+    .module('ngEvoraitCodeChallengeApp', [
         'ngAnimate',
         'ngSanitize',
         'ngCookies',
@@ -20,8 +20,8 @@ angular
     .constant('evoraitConfig', {
         title: "EvoraIT Code Challenge"
 })
-    .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'evoraitConfig',
-        function ($stateProvider, $urlRouterProvider, $locationProvider, evoraitConfig) {
+    .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
+        function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
             $urlRouterProvider.otherwise('/home');
 
@@ -35,6 +35,11 @@ angular
                 .state('main.home', {
                     url: '/home',
                     templateUrl: '../views/home/main.home.html',
+                    resolve: {
+                        serviceItem: function (serviceApiMock) {
+                            return serviceApiMock.setup();
+                        }
+                    },
                     controller: 'HomeCtrl'
                 });
 

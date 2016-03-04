@@ -4,7 +4,13 @@
         <div class="modal-dismiss"><img class="svg-icon" ng-click="cancel()" role="button" src="resources/svg/close.svg" width="28px" height="28px"></div>
         <div class="row">
             <div class="col-xs-12 col-sm-6">
-
+                <table class="table">
+                    <tr ng-repeat="stage in serviceItem.stages | orderBy: '-timestamp.start'">
+                        <td>{{stage.getType()}}</td>
+                        <td>{{stage.getStartTime()}}</td>
+                        <td>{{stage.getDuration()}}</td>
+                    </tr>
+                </table>
             </div>
             <div class="col-xs-12 col-sm-6">
 

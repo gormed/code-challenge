@@ -83,6 +83,7 @@ module.exports = function (grunt) {
                     open: true,
                     middleware: function (connect) {
                         return [
+                            modRewrite(['^[^\\.]*$ /index.html [L]']),
                             connect.static('.tmp'),
                             connect().use(
                                 '/bower_components',
@@ -98,6 +99,7 @@ module.exports = function (grunt) {
                     port: 9001,
                     middleware: function (connect) {
                         return [
+                            modRewrite(['^[^\\.]*$ /index.html [L]']),
                             connect.static('.tmp'),
                             connect.static('test'),
                             connect().use(
@@ -109,10 +111,23 @@ module.exports = function (grunt) {
                     }
                 }
             },
+
             dist: {
                 options: {
                     open: true,
-                    base: '<%= yeoman.dist %>'
+                    base: '<%= yeoman.dist %>',
+                    middleware: function (connect) {
+                        return [
+                            modRewrite(['^[^\\.]*$ /index.html [L]']),
+                            connect.static('.tmp'),
+                            connect.static('test'),
+                            connect().use(
+                                '/bower_components',
+                                connect.static('./bower_components')
+                            ),
+                            connect.static(appConfig.app)
+                        ];
+                    }
                 }
             }
         },

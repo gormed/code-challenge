@@ -1,0 +1,34 @@
+{
+  "metaInfo": {
+    "recovery": "Fri Mar 04 2016 13:02:31 GMT+0100"
+  },
+  "stages": [
+    {
+      "timestamp": {
+        "start": "Fri Mar 04 2016 12:00:00 GMT+0100",
+        "end": "Fri Mar 04 2016 13:00:00 GMT+0100"
+      },
+      "type": "trip",
+      "annotation": "-"
+    },
+    {
+      "timestamp": {
+        "start": "Fri Mar 04 2016 13:05:00 GMT+0100",
+        "end": "Fri Mar 04 2016 13:20:00 GMT+0100"
+      },
+      "type": "work",
+      "annotation": "Worktime"
+    },
+    {
+      "timestamp": {
+        "start": "Fri Mar 04 2016 13:23:00 GMT+0100",
+        "end": "Fri Mar 04 2016 13:42:00 GMT+0100"
+      },
+      "type": "trip",
+      "annotation": "-"
+    }
+  ],
+  "materialList": [
+
+  ]
+}

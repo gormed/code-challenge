@@ -1,22 +1,23 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: MainctrlCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('sbAdminApp'));
+  beforeEach(module('ngEvoraitCodeChallengeApp'));
 
-  var MainCtrl,
+  var MainctrlCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    MainctrlCtrl = $controller('MainctrlCtrl', {
       $scope: scope
+      // place here mocked dependencies
     });
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+    expect(MainctrlCtrl.awesomeThings.length).toBe(3);
   });
 });

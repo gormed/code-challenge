@@ -1,9 +1,13 @@
 {
   "name": "ng-evorait-code-challenge",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "generator-env-config": "0.0.2",
+    "yo": "^1.6.0"
+    },
   "devDependencies": {
     "grunt": "^0.4.5",
+    "connect-modrewrite": "^0.8.2",
     "grunt-autoprefixer": "^0.7.3",
     "grunt-concurrent": "^0.5.0",
     "grunt-contrib-clean": "^0.5.0",

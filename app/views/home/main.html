@@ -12,14 +12,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">{{page.title}}</a>
+                    <a class="navbar-brand" href="/">{{::page.title}}</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse-main">
                     <ul class="nav navbar-nav">
                         <li ng-repeat="item in navigation track by $index" ng-class="currentMenu === item.id ? 'active' : ''">
-                            <a ng-href="{{item.href}}">{{item.name}}</a>
+                            <a ui-sref="{{::item.href}}">{{::item.name}}</a>
                         </li>
                     </ul>
                     <form class="navbar-form navbar-right" role="search">

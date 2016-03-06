@@ -12,6 +12,7 @@ angular
     .module('ngEvoraitCodeChallengeApp', [
         'ngAnimate',
         'ngSanitize',
+        'ngResource',
         'ngCookies',
         'ui.router',
         'ui.bootstrap',
@@ -28,16 +29,16 @@ angular
             $stateProvider
                 .state('main', {
                     url: '',
-                    templateUrl: 'views/home/main.html',
+                    templateUrl: '../views/main/main.html',
                     deepStateRedirect: "main.home",
                     controller: 'MainCtrl'
                 })
                 .state('main.home', {
                     url: '/home',
-                    templateUrl: '../views/home/main.home.html',
+                    templateUrl: '../views/main/main.home.html',
                     resolve: {
                         serviceItem: function (serviceApiMock) {
-                            return serviceApiMock.setup();
+                            return serviceApiMock.fetch('mockService.json');
                         }
                     },
                     controller: 'HomeCtrl'

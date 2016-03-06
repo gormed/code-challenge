@@ -1,26 +1,106 @@
 <div class="confirmation-feedback-modal">
     <div class="modal-header">
         <h3 class="modal-title">Summary</h3>
-        <div class="modal-dismiss"><img class="svg-icon" ng-click="cancel()" role="button" src="resources/svg/close.svg" width="28px" height="28px"></div>
+
+        <div class="modal-dismiss">
+            <span ng-click="cancel()" role="button">✖</span>
+        </div>
         <div class="row">
             <div class="col-xs-12 col-sm-6">
                 <table class="table">
-                    <tr ng-repeat="stage in serviceItem.stages | orderBy: '-timestamp.start'">
-                        <td>{{stage.getType()}}</td>
-                        <td>{{stage.getStartTime()}}</td>
-                        <td>{{stage.getDuration()}}</td>
+                    <tr ng-repeat="stage in serviceItem.stages | orderBy: 'timestamp.start'">
+                        <td><b>{{labels.stage[stage.type]}}:</b></td>
+                        <td>{{stage.startTime}}</td>
+                        <td>{{stage.duration}}</td>
+                        <td>{{stage.annotation}}</td>
                     </tr>
                 </table>
             </div>
-            <div class="col-xs-12 col-sm-6">
-
+            <div class="col-xs-12 col-sm-4">
+                <table class="table meta-info">
+                    <tr>
+                        <td><b>{{labels.metaInfo.systemRecovery}}:</b></td>
+                        <td>{{serviceItem.recoveryTime}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>{{labels.metaInfo.distance}}:</b></td>
+                        <td>{{serviceItem.distance}}</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
     <div class="modal-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <td>{{labels.material.materialNo}}</td>
+                    <td>{{labels.material.description}}</td>
+                    <td>{{labels.material.materialCode}}</td>
+                    <td>{{labels.material.quantity}}</td>
+                    <td>{{labels.material.annotation}}</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="material in serviceItem.materialList | orderBy: materialNo">
+                    <td>{{material.materialNo}}</td>
+                    <td>{{material.description}}</td>
+                    <td>{{material.materialCode}}</td>
+                    <td>{{material.quantity}}</td>
+                    <td>{{material.annotation}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-xs-12">
+                <form novalidate role="form" name="forms.feedbackForm" class="form-inline">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group contact-name">
+                                <label for="contactName">{{labels.feedback.contactName}} </label>
+                                <input type="text" class="form-control" id="contactName"
+                                       ng-model="customerFeedback.contactName"
+                                       minlength="2" required/>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="checkbox" id="contactNotAvailable"
+                                       ng-model="customerFeedback.contactNotAvailable"/>
+                                <label for="contactNotAvailable">{{labels.feedback.contactNotAvailable}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group signature">
+                                <label for="signature">{{labels.feedback.signature}}</label>
+
+                                <div class="signature-wrapper"
+                                     ng-mouseleave="updateSignature()"
+                                     ng-mouseup="updateSignature()"
+                                     ng-class="{'disabled': forms.feedbackForm.$invalid || customerFeedback.contactNotAvailable}">
+                                    <signature-pad id="signature"
+                                                   dataurl="signature.dataUrl"
+                                                   accept="signature.acceptSignature"
+                                                   clear="signature.clearSignature" height="150" width="292"></signature-pad>
+                                </div>
+                                <button class="btn btn-default" ng-click="clearAndUpdate()">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="sendLater()">Send later</button>
-        <button class="btn btn-warning" type="button" ng-click="submit()">Submit confirmation report</button>
+        <button class="btn btn-default" type="button"
+                ng-click="sendLater()">Send later</button>
+        <button class="btn btn-confirm" type="button"
+                ng-disabled="!canSubmit()"
+                ng-click="submit()">Submit
+            confirmation report
+        </button>
     </div>
 </div>

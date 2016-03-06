@@ -2,10 +2,9 @@
  * Created by Hans on 04.03.2016.
  */
 
-
 var stageTypes = {
-    'trip': "Trip",
-    'work': "Work"
+    'trip': true,
+    'work': true
 };
 
 function Stage(stageJSON) {
@@ -14,7 +13,7 @@ function Stage(stageJSON) {
         end: new Date(stageJSON.timestamp.end)
     };
     if (stageTypes.hasOwnProperty(stageJSON.type)) {
-        this.type = stageTypes[stageJSON.type];
+        this.type = stageJSON.type;
     } else {
         throw TypeError("Invalid Stage Type!");
     }
@@ -22,13 +21,37 @@ function Stage(stageJSON) {
 }
 
 Stage.prototype = {
-    getType: function () {
-        return this.type;
+    get type() {
+        return this._type;
     },
-    getStartTime: function () {
-        return this.timestamp.start.getHours() + ":" + this.timestamp.start.getMinutes();
+    set type(val) {
+        this._type = val;
     },
-    getDuration: function () {
-        return Math.abs(this.timestamp.end - this.timestamp.start) / 36e5;
+    get startTime() {
+        return getSimpleTimeString(this.timestamp.start);
+    },
+    set startDate(date) {
+        if (!(date instanceof Date)) throw TypeError("No Date object given!");
+        this.timestamp.start = date;
+    },
+    get endTime() {
+        return getSimpleTimeString(this.timestamp.end);
+    },
+    // duration in hours
+    get duration() {
+        var hours = Math.abs(this.timestamp.end - this.timestamp.start) / 36e5;
+        return sprintf("%2.2f h", hours);
+    },
+    // this will effectively set the end-date to (start-date + val), expects hours
+    set duration(val) {
+        this.timestamp.end = new Date(this.timestamp.start);
+        this.timestamp.end.setHours(this.timestamp.end.getHours()+val);
+    },
+
+    get annotation() {
+        return this._annotation;
+    },
+    set annotation(val) {
+        this._annotation = val;
     }
 };

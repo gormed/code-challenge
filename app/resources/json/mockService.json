@@ -1,6 +1,8 @@
 {
+  "_id": "42",
   "metaInfo": {
-    "recovery": "Fri Mar 04 2016 13:02:31 GMT+0100"
+    "systemRecovery": "Fri Mar 04 2016 13:02:31 GMT+0100",
+    "distance": "125"
   },
   "stages": [
     {
@@ -45,10 +47,10 @@
     },
     {
       "materialNo": "3410515699",
-      "description": "Spring level 191913 913 WITH ROLL A",
+      "description": "Spring lever 191913 913 WITH ROLL A",
       "materialCode": "V",
       "quantity": "1",
-      "annotation": "Whereabouts client diagnostic"
+      "annotation": "whereabouts client diagnostic"
     }
   ]
 }

@@ -20,7 +20,7 @@ angular
     ])
     .constant('evoraitConfig', {
         title: "EvoraIT Code Challenge"
-})
+    })
     .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
         function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
@@ -37,7 +37,7 @@ angular
                     url: '/home',
                     templateUrl: '../views/main/main.home.html',
                     resolve: {
-                        serviceItem: function (serviceApiMock) {
+                        servicePromise: function (serviceApiMock) {
                             return serviceApiMock.fetch('mockService.json');
                         }
                     },

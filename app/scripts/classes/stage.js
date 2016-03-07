@@ -1,17 +1,20 @@
-/**
- * Created by Hans on 04.03.2016.
- */
-
+// used to validate the stages type
 var stageTypes = {
     'trip': true,
     'work': true
 };
 
+/**
+ * Defines a stage in a Service
+ * @param stageJSON json resource to construct the object
+ * @constructor
+ */
 function Stage(stageJSON) {
     this.timestamp = {
         start: new Date(stageJSON.timestamp.start),
         end: new Date(stageJSON.timestamp.end)
     };
+    // validate the stage type
     if (stageTypes.hasOwnProperty(stageJSON.type)) {
         this.type = stageJSON.type;
     } else {

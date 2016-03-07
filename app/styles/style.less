@@ -1,24 +1,31 @@
+@import 'mixins.less';
+@import 'responsive.less';
+
 @brand-primary: #006487;
 
 @font-color: #003f56;
 
+/* button colors */
 @button-font-color: #fff;
 @button-confirm-color: #eb780a;
 @button-default-color: @brand-primary;
 
+/* modal dialog colors */
 @modal-header-color: #f0f0ff;
 @modal-table-header-color: #e1e1e6;
 @modal-body-color: #ffffff;
 @modal-footer-color: @modal-header-color;
 
+/* input colors */
 @input-back-color: @modal-header-color;
 @input-border-color-focus: @modal-table-header-color;
 @input-checker-color: @font-color;
 
-.font-smoothing() {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* Signature pad hatched colors */
+@hatch-white: @modal-body-color;
+@hatch-grey: @modal-header-color;
+@hatch-grey-disabled: @modal-table-header-color;
+@hatch-grey-light: #f5f5ff;
 
 body {
   .font-smoothing();
@@ -40,6 +47,8 @@ input.form-control {
     box-shadow: none;
   }
 }
+
+.checkbox(@input-checker-color, @input-border-color-focus, @input-back-color, 34px, '✕');
 
 .btn {
   color: @button-font-color;
@@ -66,81 +75,6 @@ input.form-control {
   }
 }
 
-/* hover style just for information */
-label:hover:before {
-  border: 1px solid @input-border-color-focus !important;
-}
-
-/* custom checkbox style*/
-[type="checkbox"] {
-  /* Base for label styling */
-  &:not(:checked),
-  &:checked {
-    position: absolute;
-    left: -9999px;
-    & + label {
-      line-height: 34px;
-      margin-bottom: 0;
-      position: relative;
-      padding-left: 40px;
-      cursor: pointer;
-      /* checkbox aspect */
-      &:before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 34px;
-        height: 34px;
-        border: none;
-        background: @input-back-color;
-        border-radius: 0;
-        //box-shadow: inset 0 1px 3px rgba(0, 0, 0, .3)
-      }
-      /* checked mark aspect */
-      &:after {
-        content: '✕';
-        position: absolute;
-        top: 5px;
-        left: 2px;
-        font-size: 35px;
-        line-height: 24px;
-        color: @input-checker-color;
-        transition: all .2s;
-      }
-    }
-  }
-  /* checked mark aspect changes */
-  &:not(:checked) + label:after {
-    opacity: 0;
-    transform: scale(0);
-  }
-  &:checked + label:after {
-    opacity: 1;
-    transform: scale(1);
-  }
-  /* disabled checkbox */
-  &:disabled {
-    &:not(:checked) + label:before,
-    &:checked + label:before {
-      //box-shadow: none;
-      border-color: transparent;
-      //background-color: #ddd;
-    }
-    &:checked + label:after {
-      color: #999;
-    }
-    & + label {
-      color: #aaa;
-    }
-  }
-  /* accessibility */
-  &:checked:focus + label:before,
-  &:not(:checked):focus + label:before {
-    border: solid 1px @input-border-color-focus;
-  }
-}
-
 #page-wrapper {
   margin-left: 15px;
   margin-right: 15px;
@@ -149,10 +83,6 @@ label:hover:before {
 .btn {
   border-radius: 0;
   font-weight: bold;
-}
-
-.tab-once {
-  padding-left: 4em;
 }
 
 .modal-dialog {
@@ -235,39 +165,22 @@ label:hover:before {
         &.signature {
           button {
             vertical-align: bottom;
+            margin-top: 15px;
           }
           .signature-wrapper {
             display: inline-block;
             vertical-align: text-top;
             border: solid 4px @modal-table-header-color;
             margin-right: 15px;
-            // by https://css-tricks.com/stripes-css/
-            @hatch-white: @modal-body-color;
-            @hatch-grey: @modal-header-color;
-            @hatch-grey-disabled: @modal-table-header-color;
-            @hatch-grey-light: #f5f5ff;
-            background: repeating-linear-gradient(
-                    135deg,
-                    @hatch-white,
-                    @hatch-grey-light 2px,
-                    @hatch-grey 3px,
-                    @hatch-grey-light 4px,
-                    @hatch-white 5px
 
-            );
+            .hatched-background-fine(@hatch-white, @hatch-grey-light, @hatch-grey, 135deg);
+
             &.disabled {
-              .signature>canvas {
+              .signature > canvas {
                 display: none;
               }
               border: solid 4px @modal-table-header-color;
-              background: repeating-linear-gradient(
-                      135deg,
-                      @hatch-grey-disabled,
-                      @hatch-grey 2px,
-                      @hatch-grey-light 3px,
-                      @hatch-grey 4px,
-                      @hatch-grey-disabled 5px
-              );
+              .hatched-background-fine(@hatch-grey-disabled, @hatch-grey, @hatch-grey-light, 135deg);
             }
           }
         }

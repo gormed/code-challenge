@@ -1,0 +1,391 @@
+.text-shadow (@string: 0 0 1px rgba(0, 0, 0, 0.2)) {
+  text-shadow: @string;
+}
+
+.font-smoothing() {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hypens(@limit-chars: 5, @limit-lines: 2) {
+  -moz-hyphens: auto;
+  -o-hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+
+  -moz-hyphenate-limit-chars: auto @limit-chars;
+  -moz-hyphenate-limit-lines: @limit-lines;
+  -o-hyphenate-limit-chars: auto @limit-chars;
+  -o-hyphenate-limit-lines: @limit-lines;
+  -webkit-hyphenate-limit-chars: auto @limit-chars;
+  -webkit-hyphenate-limit-lines: @limit-lines;
+  -ms-hyphenate-limit-chars: auto @limit-chars;
+  -ms-hyphenate-limit-lines: @limit-lines;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+.box-shadow (@string) {
+  -webkit-box-shadow: @string;
+  -moz-box-shadow: @string;
+  box-shadow: @string;
+}
+
+.drop-shadow (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+  -webkit-box-shadow: @x @y @blur @spread rgba(0, 0, 0, @alpha);
+  -moz-box-shadow: @x @y @blur @spread rgba(0, 0, 0, @alpha);
+  box-shadow: @x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+
+.inner-shadow (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+  -webkit-box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+  -moz-box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+  box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+
+.no-shadow() {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.box-sizing (@type: border-box) {
+  -webkit-box-sizing: @type;
+  -moz-box-sizing: @type;
+  box-sizing: @type;
+}
+
+.border-radius (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+.border-radiuses (@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
+  -webkit-border-top-right-radius: @topright;
+  -webkit-border-bottom-right-radius: @bottomright;
+  -webkit-border-bottom-left-radius: @bottomleft;
+  -webkit-border-top-left-radius: @topleft;
+
+  -moz-border-radius-topright: @topright;
+  -moz-border-radius-bottomright: @bottomright;
+  -moz-border-radius-bottomleft: @bottomleft;
+  -moz-border-radius-topleft: @topleft;
+
+  border-top-right-radius: @topright;
+  border-bottom-right-radius: @bottomright;
+  border-bottom-left-radius: @bottomleft;
+  border-top-left-radius: @topleft;
+
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+.opacity (@opacity: 0.5) {
+  -webkit-opacity: @opacity;
+  -moz-opacity: @opacity;
+  opacity: @opacity;
+}
+
+.gradient (@startColor: #eee, @endColor: white) {
+  background-color: @startColor;
+  background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+  background: -webkit-linear-gradient(top, @startColor, @endColor);
+  background: -moz-linear-gradient(top, @startColor, @endColor);
+  background: -ms-linear-gradient(top, @startColor, @endColor);
+  background: -o-linear-gradient(top, @startColor, @endColor);
+}
+
+.horizontal-gradient (@startColor: #eee, @endColor: white) {
+  background-color: @startColor;
+  background-image: -webkit-gradient(linear, left top, right top, from(@startColor), to(@endColor));
+  background-image: -webkit-linear-gradient(left, @startColor, @endColor);
+  background-image: -moz-linear-gradient(left, @startColor, @endColor);
+  background-image: -ms-linear-gradient(left, @startColor, @endColor);
+  background-image: -o-linear-gradient(left, @startColor, @endColor);
+}
+
+.animation (@name, @duration: 300ms, @delay: 0, @ease: ease) {
+  -webkit-animation: @name @duration @delay @ease;
+  -moz-animation: @name @duration @delay @ease;
+  -ms-animation: @name @duration @delay @ease;
+}
+
+.transition (@transition) {
+  -webkit-transition: @transition;
+  -moz-transition: @transition;
+  -ms-transition: @transition;
+  -o-transition: @transition;
+}
+
+.transform(@string) {
+  -webkit-transform: @string;
+  -moz-transform: @string;
+  -ms-transform: @string;
+  -o-transform: @string;
+}
+
+.scale (@factor) {
+  -webkit-transform: scale(@factor);
+  -moz-transform: scale(@factor);
+  -ms-transform: scale(@factor);
+  -o-transform: scale(@factor);
+}
+
+.scale (@x, @y) {
+  -webkit-transform: scale(@x, @y);
+  -moz-transform: scale(@x, @y);
+  -ms-transform: scale(@x, @y);
+  -o-transform: scale(@x, @y);
+}
+
+.rotate (@deg) {
+  -webkit-transform: rotate(@deg);
+  -moz-transform: rotate(@deg);
+  -ms-transform: rotate(@deg);
+  -o-transform: rotate(@deg);
+}
+
+.skew (@deg, @deg2) {
+  -webkit-transform: skew(@deg, @deg2);
+  -moz-transform: skew(@deg, @deg2);
+  -ms-transform: skew(@deg, @deg2);
+  -o-transform: skew(@deg, @deg2);
+}
+
+.translate (@x, @y:0) {
+  -webkit-transform: translate(@x, @y);
+  -moz-transform: translate(@x, @y);
+  -ms-transform: translate(@x, @y);
+  -o-transform: translate(@x, @y);
+}
+
+.translate3d (@x, @y: 0, @z: 0) {
+  -webkit-transform: translate3d(@x, @y, @z);
+  -moz-transform: translate3d(@x, @y, @z);
+  -ms-transform: translate3d(@x, @y, @z);
+  -o-transform: translate3d(@x, @y, @z);
+}
+
+.perspective (@value: 1000) {
+  -webkit-perspective: @value;
+  -moz-perspective: @value;
+  -ms-perspective: @value;
+  perspective: @value;
+}
+
+.transform-origin (@x:center, @y:center) {
+  -webkit-transform-origin: @x @y;
+  -moz-transform-origin: @x @y;
+  -ms-transform-origin: @x @y;
+  -o-transform-origin: @x @y;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+.filter-blur(@value) {
+  filter: blur(@value);
+  // Browser Specific
+  -webkit-filter: blur(@value);
+  -moz-filter: blur(@value);
+  -o-filter: blur(@value);
+  -ms-filter: blur(@value);
+}
+
+.filter-brightness(@value) {
+  filter: brightness(@value);
+  // Browser Specific
+  -webkit-filter: brightness(@value);
+  -moz-filter: brightness(@value);
+  -o-filter: brightness(@value);
+  -ms-filter: brightness(@value);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+.back-image(@v, @h, @size) {
+  background-position: @v @h;
+  background-size: @size;
+}
+
+.back-color(@color) {
+  background: linear-gradient(@color, @color);
+}
+
+.icon(@svg-url, @height: 2em, @width: 2em) {
+  background-image: url(@svg-url);
+  background-position: center center;
+  background-size: cover;
+  width: @width;
+  height: @height;
+}
+
+.darken-back(@value) {
+  background: linear-gradient(rgba(0, 0, 0, @value), rgba(0, 0, 0, @value));
+}
+
+/* hatched background inspired by https://css-tricks.com/stripes-css/ */
+.hatched-background-fine(@hatch-zero, @hatch-half, @hatch-one, @degree: 135deg) {
+  background: repeating-linear-gradient(
+          @degree,
+          @hatch-zero,
+          @hatch-half 2px,
+          @hatch-one 3px,
+          @hatch-half 4px,
+          @hatch-zero 5px
+  );
+}
+
+//////////////////////////////////////////////////////////////////////////////
+
+.circle-buttons() {
+  .btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0 !important;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.428571429;
+
+    &.btn-lg {
+      width: 50px;
+      height: 50px;
+      padding: 10px 16px;
+      border-radius: 25px;
+      font-size: 18px;
+      line-height: 1.33;
+    }
+
+    &.btn-xl {
+      width: 70px;
+      height: 70px;
+      padding: 10px 16px;
+      border-radius: 35px;
+      font-size: 24px;
+      line-height: 1.33;
+    }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Scrollbars (webkit only)
+
+.scrollbars(@color: #fff, @back-color: rgba(128, 128, 128, 0.5), @width: 4px, @rounds: 1px) {
+  &::-webkit-scrollbar {
+    width: @width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: @back-color;
+    border-radius: @rounds;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: @color;
+    border-radius: @rounds;
+  }
+}
+
+.scrollable(@min-height: auto, @max-height: 150px) {
+  min-height: @min-height;
+  max-height: @max-height;
+  overflow: auto;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+.svg-icon(@stroke-width: 5pt, @stroke-color: @grey, @stroke-color-hover: @dark-grey) {
+  svg line {
+    stroke-width: @stroke-width;
+    stroke: @stroke-color;
+  }
+  &:focus, &:hover {
+    svg line {
+      stroke: @stroke-color-hover;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+
+.checkbox(@color, @border-color, @back-color, @size: 34px, @content: '✕') {
+
+  /* hover style just for information */
+  label:hover:before {
+    border: 1px solid @border-color !important;
+  }
+
+  /* custom checkbox style */
+  [type="checkbox"] {
+    /* Base for label styling */
+    &:not(:checked),
+    &:checked {
+      position: absolute;
+      left: -9999px;
+      & + label {
+        line-height: @size;
+        margin-bottom: 0;
+        position: relative;
+        padding-left: 40px;
+        cursor: pointer;
+        /* checkbox aspect */
+        &:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: @size;
+          height: @size;
+          border: none;
+          background: @back-color;
+          border-radius: 0;
+        }
+        /* checked mark aspect */
+        &:after {
+          content: @content;
+          position: absolute;
+          top: 5px;
+          left: 2px;
+          font-size: @size + 1px;
+          line-height: @size - 10px;
+          color: @color;
+          transition: all .2s;
+        }
+      }
+    }
+    /* checked mark aspect changes */
+    &:not(:checked) + label:after {
+      opacity: 0;
+      transform: scale(0);
+    }
+    &:checked + label:after {
+      opacity: 1;
+      transform: scale(1);
+    }
+    /* disabled checkbox */
+    &:disabled {
+      &:not(:checked) + label:before,
+      &:checked + label:before {
+        border-color: transparent;
+      }
+      &:checked + label:after {
+        color: #999;
+      }
+      & + label {
+        color: #aaa;
+      }
+    }
+    /* accessibility */
+    &:checked:focus + label:before,
+    &:not(:checked):focus + label:before {
+      border: solid 1px @border-color;
+    }
+  }
+}

@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ * Defines a material used in a Service
+ * @param materialJSON json resource to construct the object
+ * @constructor
+ */
 function Material(materialJSON) {
     this.materialNo = materialJSON.materialNo;
     this.description = materialJSON.description;

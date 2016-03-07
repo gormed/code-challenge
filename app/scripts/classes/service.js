@@ -1,8 +1,8 @@
 /**
- * Created by Hans on 04.03.2016.
+ * Sample definition of a Service item
+ * @param serviceJSON json resource to construct the object
+ * @constructor
  */
-
-
 function Service(serviceJSON) {
     this.metaInfo = {
         systemRecovery: new Date(serviceJSON.metaInfo.systemRecovery),

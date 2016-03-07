@@ -40,39 +40,39 @@ angular.module('ngEvoraitCodeChallengeApp').component('confirmationFeedbackSign'
                         $scope.serviceItem = serviceItem;
                         $scope.labels = labels;
 
+                        // will store the feedback-form
                         $scope.forms = {
                             feedbackForm: null
                         };
 
-                        $scope.clearSignature = null;
-                        $scope.acceptSignature = null;
-
+                        // signature handling
                         $scope.signature = {
-                            acceptSignature: undefined,
-                            clearSignature: undefined,
+                            acceptSignature: undefined, // gets defined by signature-pad
+                            clearSignature: undefined, // gets defined by signature-pad
+                            updateSignature: function () {
+                                $scope.customerFeedback.contactSignature =
+                                    this.acceptSignature();
+                            },
+                            clearAndUpdate: function () {
+                                this.clearSignature();
+                                this.updateSignature();
+                            },
                             dataUrl: serviceItem.customerFeedback.contactSignature ?
                                 serviceItem.customerFeedback.contactSignature.dataUrl : ""
                         };
 
-                        $scope.customerFeedback = serviceItem.customerFeedback;
-
-                        $scope.clearAndUpdate = function () {
-                            $scope.signature.clearSignature();
-                            $scope.updateSignature();
-                        };
-
-                        $scope.updateSignature = function () {
-                            $scope.customerFeedback.contactSignature =
-                                $scope.signature.acceptSignature();
-                        };
-
+                        // reset signature if contact is not available
                         $scope.$watch('customerFeedback.contactNotAvailable',
                             function (contactNotAvailable) {
                                 if (contactNotAvailable) {
-                                    $scope.clearAndUpdate();
+                                    $scope.signature.clearAndUpdate();
                                 }
                             });
 
+                        // temp store for the feedback data
+                        $scope.customerFeedback = serviceItem.customerFeedback;
+
+                        // enqueues the service summary
                         $scope.sendLater = function () {
                             try {
                                 $scope.serviceItem.customerFeedback = $scope.customerFeedback;
@@ -83,6 +83,7 @@ angular.module('ngEvoraitCodeChallengeApp').component('confirmationFeedbackSign'
                             }
                         };
 
+                        // checks if the summary form is filled properly
                         $scope.canSubmit = function () {
                             try {
                                 $scope.serviceItem.customerFeedback = $scope.customerFeedback;
@@ -92,6 +93,7 @@ angular.module('ngEvoraitCodeChallengeApp').component('confirmationFeedbackSign'
                             }
                         };
 
+                        // submits the filled form
                         $scope.submit = function () {
                             if ($scope.forms.feedbackForm.$valid) {
                                 try {
@@ -115,6 +117,8 @@ angular.module('ngEvoraitCodeChallengeApp').component('confirmationFeedbackSign'
                         serviceApiMock.post(result.submit);
                     } else if (result.hasOwnProperty('enqueue')) {
                         serviceApiMock.enqueue(result.enqueue);
+                    } else {
+                        serviceApiMock.fetch();
                     }
                 }, function () {
 

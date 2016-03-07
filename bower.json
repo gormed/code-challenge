@@ -15,7 +15,6 @@
     "font-awesome": "4.3.0",
     "angular-bootstrap": "1.2.2",
     "angular-ui-router": "~0.2.18",
-    "angular-signature": "~0.1.7",
     "signature_pad": "~1.5.3"
   },
   "devDependencies": {
